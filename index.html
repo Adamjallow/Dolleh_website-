@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dolleh — We Support, You Grow</title>
+<meta name="description" content="Dolleh is the agricultural services partner supporting farmers, agribusinesses, cooperatives, and rural communities across The Gambia and Senegal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#0A1A0F;
+  --forest-soft:#13301C;
+  --brown:#5C3D2E;
+  --gold:#D4A017;
+  --orange:#C1502E;
+  --cream:#F5F0E8;
+  --cream-dim:#E8DFCB;
+  --ink:#1B1B16;
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.container{width:100%;max-width:1240px;margin:0 auto;padding:0 24px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  padding:22px 0;
+  transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+}
+.nav.scrolled{
+  background:rgba(10,26,15,0.92);
+  backdrop-filter:blur(10px);
+  padding:14px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,0.18);
+}
+.nav .container{display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:22px;color:var(--cream);letter-spacing:.5px;}
+.logo svg{width:34px;height:34px;flex-shrink:0;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{
+  color:var(--cream-dim);font-size:14.5px;font-weight:500;letter-spacing:.3px;
+  position:relative;padding:6px 0;transition:color .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gold);
+  transition:width .3s ease;
+}
+.nav-links a:hover{color:var(--cream);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  background:var(--gold);color:var(--forest);padding:11px 24px;border-radius:3px;
+  font-weight:600;font-size:14px;letter-spacing:.3px;transition:transform .25s, box-shadow .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(212,160,23,.35);}
+.nav-toggle{display:none;flex-direction:column;gap:5px;width:28px;}
+.nav-toggle span{height:2px;background:var(--cream);width:100%;border-radius:2px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg, rgba(10,26,15,0.55) 0%, rgba(10,26,15,0.35) 35%, rgba(10,26,15,0.85) 100%),
+    linear-gradient(100deg, rgba(10,26,15,0.75) 10%, rgba(193,80,46,0.18) 60%, rgba(212,160,23,0.12) 100%),
+    url('https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+  transform:scale(1.06);
+  animation:heroZoom 18s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{from{transform:scale(1.06);}to{transform:scale(1.15);}}
+.hero .container{position:relative;z-index:2;padding-top:120px;}
+.eyebrow-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--gold);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;
+  margin-bottom:28px;opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.1s;
+}
+.eyebrow-tag::before{content:'';width:34px;height:1px;background:var(--gold);}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(40px, 7vw, 84px);
+  line-height:1.04;
+  color:var(--cream);
+  max-width:880px;
+  letter-spacing:-1px;
+  opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.25s;
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:500;}
+.hero p.lead{
+  margin-top:26px;font-size:19px;line-height:1.6;color:var(--cream-dim);
+  max-width:560px;font-weight:400;
+  opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.4s;
+}
+.hero-actions{margin-top:42px;display:flex;gap:18px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.55s;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:3px;
+  font-weight:600;font-size:15px;letter-spacing:.3px;transition:transform .3s, box-shadow .3s, background .3s;
+}
+.btn-primary{background:var(--gold);color:var(--forest);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(212,160,23,.3);}
+.btn-outline{border:1.5px solid rgba(245,240,232,.5);color:var(--cream);}
+.btn-outline:hover{background:rgba(245,240,232,.12);border-color:var(--cream);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
+.hero-meaning{
+  position:absolute;right:24px;bottom:140px;z-index:2;max-width:280px;
+  border-left:2px solid var(--gold);padding-left:18px;color:var(--cream-dim);
+  font-size:14px;line-height:1.6;display:none;
+}
+.scroll-cue{
+  position:absolute;bottom:34px;left:24px;z-index:2;display:flex;align-items:center;gap:12px;
+  color:var(--cream-dim);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+}
+.scroll-cue .line{width:1px;height:42px;background:linear-gradient(var(--gold), transparent);position:relative;overflow:hidden;}
+.scroll-cue .line::after{content:'';position:absolute;top:0;left:0;width:100%;height:14px;background:var(--cream);animation:scrollDown 2s ease-in-out infinite;}
+@keyframes scrollDown{0%{top:-14px;}100%{top:42px;}}
+
+/* ---------- SECTION GENERIC ---------- */
+section{position:relative;}
+.section-pad{padding:120px 0;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;color:var(--orange);
+  font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-bottom:18px;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--orange);}
+h2.h-title{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(32px,4.2vw,52px);
+  line-height:1.1;letter-spacing:-.5px;color:var(--forest);
+}
+.section-intro{display:flex;justify-content:space-between;gap:60px;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;}
+.section-intro p{max-width:420px;font-size:16.5px;line-height:1.7;color:#4A4A3F;}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s ease;}
+.reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+.reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.in > *:nth-child(2){transition-delay:.15s;}
+.reveal-stagger.in > *:nth-child(3){transition-delay:.25s;}
+.reveal-stagger.in > *:nth-child(4){transition-delay:.35s;}
+.reveal-stagger.in > *:nth-child(5){transition-delay:.45s;}
+.reveal-stagger.in > *:nth-child(6){transition-delay:.55s;}
+
+/* ---------- ABOUT ---------- */
+.about{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;}
+.about-media{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;}
+.about-media img{width:100%;height:100%;object-fit:cover;}
+.about-media-badge{
+  position:absolute;bottom:24px;left:24px;background:var(--forest);color:var(--cream);
+  padding:18px 22px;border-radius:3px;max-width:230px;
+}
+.about-media-badge .word{font-family:var(--font-display);font-size:26px;color:var(--gold);font-style:italic;}
+.about-media-badge p{font-size:13px;line-height:1.5;margin-top:6px;color:var(--cream-dim);}
+.about-copy p{font-size:17px;line-height:1.8;color:#3A3A30;margin-bottom:20px;}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px;}
+.value-chip{border-left:3px solid var(--gold);padding-left:16px;}
+.value-chip h4{font-family:var(--font-display);font-size:18px;color:var(--forest);margin-bottom:6px;}
+.value-chip p{font-size:14px;color:#5a5a4d;line-height:1.5;margin:0;}
+
+/* ---------- SERVICES ---------- */
+.services{background:var(--forest);color:var(--cream);}
+.services .eyebrow{color:var(--gold);}
+.services .eyebrow::before{background:var(--gold);}
+.services h2.h-title{color:var(--cream);}
+.services .section-intro p{color:#C9CFC4;}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,240,232,.12);border:1px solid rgba(245,240,232,.12);}
+.service-card{
+  background:var(--forest);padding:42px 34px;transition:background .4s ease;position:relative;overflow:hidden;
+}
+.service-card:hover{background:var(--forest-soft);}
+.service-card .num{font-family:var(--font-display);font-size:14px;color:var(--orange);letter-spacing:1px;margin-bottom:26px;display:block;}
+.service-card .icon{width:46px;height:46px;margin-bottom:24px;color:var(--gold);}
+.service-card h3{font-family:var(--font-display);font-size:23px;font-weight:600;margin-bottom:12px;}
+.service-card p{font-size:14.5px;line-height:1.65;color:#B9C2B0;}
+.service-card::after{
+  content:'→';position:absolute;bottom:30px;right:34px;color:var(--gold);font-size:18px;
+  opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .35s;
+}
+.service-card:hover::after{opacity:1;transform:translateX(0);}
+
+/* ---------- WHY CHOOSE ---------- */
+.why{background:var(--cream-dim);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+.why-card{background:var(--cream);padding:38px 30px;border-radius:4px;border:1px solid rgba(10,26,15,.07);transition:transform .35s,box-shadow .35s;}
+.why-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(10,26,15,.08);}
+.why-card .icon-wrap{width:52px;height:52px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
+.why-card .icon-wrap svg{width:24px;height:24px;color:var(--gold);}
+.why-card h3{font-family:var(--font-display);font-size:20px;color:var(--forest);margin-bottom:10px;}
+.why-card p{font-size:14.5px;color:#5a5a4d;line-height:1.6;}
+
+/* ---------- IMPACT ---------- */
+.impact{
+  background:linear-gradient(110deg, var(--forest) 0%, #16321D 100%);
+  color:var(--cream);position:relative;
+}
+.impact::before{
+  content:'';position:absolute;inset:0;opacity:.16;mix-blend-mode:luminosity;
+  background:url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1800&q=70') center/cover;
+}
+.impact .container{position:relative;z-index:1;}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;}
+.impact-stat .num{
+  font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,64px);color:var(--gold);line-height:1;
+}
+.impact-stat .label{margin-top:12px;font-size:14px;letter-spacing:.5px;color:#C9CFC4;text-transform:uppercase;}
+
+/* ---------- TESTIMONIALS ---------- */
+.stories{background:var(--cream);}
+.story-track{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.story-card{background:#fff;border:1px solid rgba(10,26,15,.08);border-radius:6px;padding:32px;display:flex;flex-direction:column;gap:20px;transition:transform .35s,box-shadow .35s;}
+.story-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(10,26,15,.1);}
+.story-quote{font-family:var(--font-display);font-size:18px;line-height:1.6;color:#2c2c24;font-style:italic;}
+.story-quote::before{content:'“';color:var(--gold);font-size:30px;margin-right:2px;}
+.story-person{display:flex;align-items:center;gap:14px;margin-top:auto;}
+.story-person img{width:50px;height:50px;border-radius:50%;object-fit:cover;}
+.story-person .name{font-weight:700;font-size:14.5px;color:var(--forest);}
+.story-person .role{font-size:12.5px;color:#7a7a6b;}
+
+/* ---------- GALLERY ---------- */
+.gallery{background:var(--cream-dim);}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,220px);gap:14px;}
+.gallery-grid a{display:block;overflow:hidden;border-radius:4px;position:relative;}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gallery-grid a:hover img{transform:scale(1.08);}
+.gallery-grid a::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,26,15,.55));opacity:0;transition:opacity .35s;}
+.gallery-grid a:hover::after{opacity:1;}
+.g-1{grid-column:1/3;grid-row:1/3;}
+.g-4{grid-row:1/3;}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--cream);}
+.faq-list{max-width:780px;}
+.faq-item{border-bottom:1px solid rgba(10,26,15,.12);}
+.faq-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  padding:26px 4px;font-family:var(--font-display);font-size:19px;color:var(--forest);text-align:left;
+}
+.faq-q .plus{font-size:22px;color:var(--orange);transition:transform .35s;flex-shrink:0;margin-left:20px;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-a p{padding:0 4px 26px;font-size:15.5px;line-height:1.7;color:#55554a;max-width:680px;}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--forest);color:var(--cream);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+.contact h2.h-title{color:var(--cream);}
+.contact .eyebrow{color:var(--gold);}.contact .eyebrow::before{background:var(--gold);}
+.contact p.lead-sm{color:#C9CFC4;font-size:16px;line-height:1.7;margin:20px 0 32px;max-width:460px;}
+.contact-info{display:flex;flex-direction:column;gap:18px;margin-bottom:36px;}
+.contact-info .row{display:flex;align-items:center;gap:14px;font-size:15px;color:var(--cream-dim);}
+.contact-info .row svg{width:20px;height:20px;color:var(--gold);flex-shrink:0;}
+.social-row{display:flex;gap:14px;}
+.social-row a{
+  width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,240,232,.25);
+  display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s,transform .3s;
+}
+.social-row a svg{width:18px;height:18px;}
+.social-row a:hover{background:var(--gold);border-color:var(--gold);color:var(--forest);transform:translateY(-3px);}
+.whatsapp-btn{
+  display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#06320f;
+  padding:14px 26px;border-radius:30px;font-weight:700;font-size:14.5px;margin-top:10px;
+  transition:transform .3s,box-shadow .3s;
+}
+.whatsapp-btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(37,211,102,.3);}
+.form-card{background:rgba(245,240,232,.05);border:1px solid rgba(245,240,232,.15);border-radius:6px;padding:36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field.full{grid-column:1/3;}
+.field label{font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;color:#C9CFC4;}
+.field input, .field textarea, .field select{
+  background:rgba(245,240,232,.08);border:1px solid rgba(245,240,232,.2);border-radius:3px;
+  padding:13px 14px;color:var(--cream);font-family:inherit;font-size:14.5px;outline:none;
+  transition:border-color .25s, background .25s;
+}
+.field input::placeholder, .field textarea::placeholder{color:#8FA08A;}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--gold);background:rgba(245,240,232,.12);}
+.field select option{color:#000;}
+.form-submit{
+  width:100%;background:var(--gold);color:var(--forest);padding:16px;border-radius:3px;
+  font-weight:700;font-size:15px;margin-top:8px;transition:transform .3s, box-shadow .3s;
+}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(212,160,23,.3);}
+.form-note{font-size:12.5px;color:#8FA08A;margin-top:12px;text-align:center;}
+
+/* ---------- FOOTER ---------- */
+footer{background:#071109;color:var(--cream-dim);padding:64px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{margin-bottom:16px;}
+.footer-brand p{font-size:14px;line-height:1.7;color:#8FA08A;max-width:280px;}
+.footer-col h5{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.footer-col a{display:block;font-size:14.5px;color:#B9C2B0;margin-bottom:12px;transition:color .25s;}
+.footer-col a:hover{color:var(--cream);}
+.footer-bottom{
+  border-top:1px solid rgba(245,240,232,.1);padding-top:24px;display:flex;justify-content:space-between;
+  align-items:center;font-size:13px;color:#6e7d68;flex-wrap:wrap;gap:12px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:980px){
+  .about-grid, .contact-grid{grid-template-columns:1fr;gap:48px;}
+  .service-grid{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .story-track{grid-template-columns:repeat(2,1fr);}
+  .impact-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px;}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,180px);}
+  .g-1{grid-column:1/3;grid-row:1/2;}
+  .g-4{grid-row:auto;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;background:var(--forest);
+    flex-direction:column;justify-content:center;align-items:flex-start;padding:0 36px;gap:28px;
+    transform:translateX(100%);transition:transform .4s ease;z-index:999;}
+  .nav-links.open{transform:translateX(0);}
+  .nav-cta{order:99;}
+  .nav-toggle{display:flex;}
+  .section-pad{padding:80px 0;}
+  .section-intro{margin-bottom:44px;}
+  .service-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .story-track{grid-template-columns:1fr;}
+  .impact-grid{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,160px);}
+  .g-1{grid-column:1/3;grid-row:1/2;}
+  .form-row{grid-template-columns:1fr;}
+  .field.full{grid-column:1/2;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .hero h1{font-size:clamp(34px,9vw,52px);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 48 48" fill="none"><path d="M24 4C24 4 34 14 34 26C34 35.94 24 44 24 44C24 44 14 35.94 14 26C14 14 24 4 24 4Z" fill="#D4A017" opacity="0.85"/><path d="M24 12C24 12 30 19 30 27C30 33 24 38 24 38C24 38 18 33 18 27C18 19 24 12 24 12Z" fill="#F5F0E8"/></svg>
+      Dolleh
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Dolleh</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <span class="eyebrow-tag">The Gambia &amp; Senegal</span>
+    <h1>We carry the weight,<br>so you can <em>grow.</em></h1>
+    <p class="lead">Dolleh is the agricultural services partner supporting farmers, agribusinesses, cooperatives, and rural communities across The Gambia and Senegal.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">Explore Services</a>
+      <a href="#about" class="btn btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</header>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=900&q=80" alt="Farmer standing in a golden field at sunrise in West Africa">
+        <div class="about-media-badge">
+          <div class="word">Dolleh</div>
+          <p>Wolof for power, strength, and backbone — the support that lets something greater stand tall.</p>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="h-title">A partner who stands beside you, not above you.</h2>
+        <p>Dolleh was built on a simple belief: farmers carry enough already. The land, the weather, the markets, the labour — the weight is real. Dolleh exists to share that load.</p>
+        <p>We provide the equipment, the inputs, the logistics, and the know-how that let farmers, cooperatives, and agribusinesses across The Gambia and Senegal focus on what they do best — growing.</p>
+        <div class="about-values">
+          <div class="value-chip"><h4>Mission</h4><p>Carry the operational weight of agriculture so farmers can focus on growth.</p></div>
+          <div class="value-chip"><h4>Vision</h4><p>A West Africa where every farmer has the backbone of a reliable partner.</p></div>
+          <div class="value-chip"><h4>Values</h4><p>Trust, strength, community, and quiet professionalism in every field we serve.</p></div>
+          <div class="value-chip"><h4>Approach</h4><p>Local knowledge paired with modern, dependable agricultural infrastructure.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-pad" id="services">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div>
+        <span class="eyebrow">What We Do</span>
+        <h2 class="h-title">Full-weight support,<br>start to harvest.</h2>
+      </div>
+      <p>From the first tilled row to the last delivered sack, Dolleh's services are built to remove friction at every stage of the farming season.</p>
+    </div>
+    <div class="service-grid reveal-stagger">
+      <div class="service-card">
+        <span class="num">01</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="22" width="20" height="12" rx="2"/><circle cx="13" cy="36" r="4"/><circle cx="34" cy="36" r="5"/><path d="M26 26h8l6 8h-4"/></svg>
+        <h3>Tractor Hire</h3>
+        <p>Well-maintained, modern tractors and implements available on flexible terms — ploughing, harrowing, and harvesting without the cost of ownership.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">02</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 6c6 8 12 14 12 22a12 12 0 0 1-24 0c0-8 6-14 12-22Z"/></svg>
+        <h3>Agricultural Inputs</h3>
+        <p>Quality seeds, fertilizers, and crop protection products sourced and delivered reliably, season after season.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">03</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 40V20l16-12 16 12v20"/><path d="M19 40V26h10v14"/></svg>
+        <h3>Farm Support</h3>
+        <p>On-the-ground operational help — labour coordination, equipment maintenance, and seasonal planning support.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">04</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="18" width="22" height="14" rx="1.5"/><path d="M26 22h8l8 6v4h-16"/><circle cx="13" cy="36" r="4"/><circle cx="34" cy="36" r="4"/></svg>
+        <h3>Logistics</h3>
+        <p>Reliable transport of harvests, inputs, and equipment between farms, cooperatives, and markets.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">05</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="17" cy="14" r="5"/><path d="M7 38c0-7 4-12 10-12s10 5 10 12"/><circle cx="33" cy="18" r="4"/><path d="M27 38c0-5 3-9 8-9"/></svg>
+        <h3>Farmer Training</h3>
+        <p>Practical training in modern, sustainable farming techniques delivered by people who understand local conditions.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">06</span>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 4 6 12v10c0 12 8 19 18 22 10-3 18-10 18-22V12L24 4Z"/><path d="M17 24l5 5 9-10"/></svg>
+        <h3>Advisory Services</h3>
+        <p>Honest guidance on crop choices, financing, and operations — strategic backbone for cooperatives and agribusinesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why section-pad" id="why">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div>
+        <span class="eyebrow">Why Dolleh</span>
+        <h2 class="h-title">Strength you can rely on, season after season.</h2>
+      </div>
+      <p>Dolleh is built for the long term — for farmers who need a partner that shows up, not just for one harvest.</p>
+    </div>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 6 4 9 8 10 4-1 8-4 8-10V6l-8-4Z"/></svg></div>
+        <h3>Trusted Partner</h3>
+        <p>We work alongside farmers, not above them — every decision made with their interests first.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/></svg></div>
+        <h3>Local Knowledge</h3>
+        <p>Deep understanding of Gambian and Senegalese soil, seasons, and communities.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="11" width="14" height="7" rx="1"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M16 13h4l2 3v2h-2"/></svg></div>
+        <h3>Reliable Equipment</h3>
+        <p>Well-serviced tractors and machinery, ready when the season demands it.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 7 7 7 11a7 7 0 0 1-14 0c0-4 3-7 7-11Z"/></svg></div>
+        <h3>Sustainable Agriculture</h3>
+        <p>Practices designed to protect the land that farmers will depend on for generations.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><path d="M16 14c2.8 0 5 1.8 5 5"/></svg></div>
+        <h3>Community Empowerment</h3>
+        <p>Every contract supports jobs, training, and growth within local communities.</p>
+      </div>
+      <div class="why-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M9 20h6M12 16v4"/></svg></div>
+        <h3>Professional Service</h3>
+        <p>Clear contracts, dependable scheduling, and a team that treats every farm with respect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact section-pad" id="impact">
+  <div class="container">
+    <div class="section-intro reveal" style="margin-bottom:64px;">
+      <div>
+        <span class="eyebrow">Our Impact</span>
+        <h2 class="h-title">Measured in fields, not just figures.</h2>
+      </div>
+    </div>
+    <div class="impact-grid reveal-stagger">
+      <div class="impact-stat"><div class="num" data-count="1200">0</div><div class="label">Farmers Supported</div></div>
+      <div class="impact-stat"><div class="num" data-count="85">0</div><div class="label">Villages Reached</div></div>
+      <div class="impact-stat"><div class="num" data-count="40">0</div><div class="label">Tractors Deployed</div></div>
+      <div class="impact-stat"><div class="num" data-count="15000">0</div><div class="label">Acres Cultivated</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories section-pad" id="stories">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div>
+        <span class="eyebrow">Farmer Success Stories</span>
+        <h2 class="h-title">Real weight, lifted off real shoulders.</h2>
+      </div>
+    </div>
+    <div class="story-track reveal-stagger">
+      <div class="story-card">
+        <p class="story-quote">Before Dolleh, hiring a tractor meant waiting weeks. Now my whole season runs on time, and my yield has grown every year.</p>
+        <div class="story-person">
+          <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80" alt="Portrait of Amadou Diallo">
+          <div><div class="name">Amadou Diallo</div><div class="role">Rice Farmer, Casamance</div></div>
+        </div>
+      </div>
+      <div class="story-card">
+        <p class="story-quote">Dolleh trained our cooperative on modern planting techniques. We are not just farming harder — we are farming smarter.</p>
+        <div class="story-person">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80" alt="Portrait of Fatou Ceesay">
+          <div><div class="name">Fatou Ceesay</div><div class="role">Cooperative Lead, North Bank</div></div>
+        </div>
+      </div>
+      <div class="story-card">
+        <p class="story-quote">They feel like a partner, not a vendor. Dolleh shows up when they say they will, and that reliability changed how we plan our harvests.</p>
+        <div class="story-person">
+          <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=200&q=80" alt="Portrait of Ousman Jallow">
+          <div><div class="name">Ousman Jallow</div><div class="role">Groundnut Farmer, Kaolack</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div>
+        <span class="eyebrow">Gallery</span>
+        <h2 class="h-title">The fields we work in.</h2>
+      </div>
+    </div>
+    <div class="gallery-grid reveal-stagger">
+      <a class="g-1" href="#"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" alt="Wide farmland at sunset"></a>
+      <a class="g-2" href="#"><img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80" alt="Tractor working a field"></a>
+      <a class="g-3" href="#"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80" alt="Harvested crops in baskets"></a>
+      <a class="g-4" href="#"><img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80" alt="Farmers working together in a field"></a>
+      <a class="g-5" href="#"><img src="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=600&q=80" alt="Rural village with farmland"></a>
+      <a class="g-6" href="#"><img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=600&q=80" alt="Farmer in a golden field"></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section-pad" id="faq">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h-title">Common questions from farmers.</h2>
+      </div>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q"><span>How do I book a tractor through Dolleh?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>You can reach our team through the contact form below, WhatsApp, or by phone. We'll confirm equipment availability and schedule a time that fits your planting or harvesting window.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Which regions does Dolleh operate in?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We currently serve farmers, cooperatives, and agribusinesses across The Gambia and Senegal, with plans to expand into more rural communities.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do you offer payment plans for inputs and equipment hire?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. We work with farmers and cooperatives on flexible terms tied to harvest cycles — speak with our advisory team to find a plan that fits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can cooperatives request group training sessions?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Absolutely. Our farmer training program is built for groups — contact us to schedule a session for your cooperative or village.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What makes Dolleh different from other agri-service providers?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We see ourselves as a partner standing beside farmers, not above them. Local knowledge, reliable equipment, and honest advisory work are at the centre of everything we do.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 class="h-title">Let's carry the weight together.</h2>
+        <p class="lead-sm">Whether you need equipment, inputs, training, or advice — reach out and our team will respond promptly.</p>
+        <div class="contact-info">
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.32 1.6.59 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.16a2 2 0 0 1 2.11-.45c.76.27 1.55.47 2.36.59A2 2 0 0 1 22 16.92Z"/></svg>+220 [phone placeholder]</div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>info@dolleh.placeholder</div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/></svg>The Gambia &amp; Senegal</div>
+        </div>
+        <a href="#" class="whatsapp-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2Zm0 18.2a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.8.8.8-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.9 1-.4.2-.7.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4 0-.6.2-.8l.5-.6a.5.5 0 0 0 .1-.6c-.1-.2-.6-1.5-.8-2s-.5-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8a8.9 8.9 0 0 0 4.1 3.9c1.5.6 2.1.6 2.6.5a2.2 2.2 0 0 0 1.5-1.1c.2-.3.2-.6.1-.9s-.2-.2-.4-.3Z"/></svg>Chat on WhatsApp</a>
+        <div class="social-row" style="margin-top:24px;">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05A4.2 4.2 0 0 1 17.8 8.6c4 0 4.7 2.6 4.7 6V21H18.7v-5c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H11V9Z"/></svg></a>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="form-card" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thank you — our team will be in touch shortly.';">
+          <div class="form-row">
+            <div class="field"><label for="fname">First Name</label><input id="fname" type="text" placeholder="Amadou" required></div>
+            <div class="field"><label for="lname">Last Name</label><input id="lname" type="text" placeholder="Diallo" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+220 ..."></div>
+          </div>
+          <div class="form-row">
+            <div class="field full">
+              <label for="interest">I'm interested in</label>
+              <select id="interest">
+                <option>Tractor Hire</option>
+                <option>Agricultural Inputs</option>
+                <option>Farm Support</option>
+                <option>Logistics</option>
+                <option>Farmer Training</option>
+                <option>Advisory Services</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label for="msg">Message</label><textarea id="msg" rows="4" placeholder="Tell us about your farm or cooperative..." required></textarea></div>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+          <div class="form-note">We typically respond within one business day.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo" style="color:var(--cream);">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 4C24 4 34 14 34 26C34 35.94 24 44 24 44C24 44 14 35.94 14 26C14 14 24 4 24 4Z" fill="#D4A017" opacity="0.85"/><path d="M24 12C24 12 30 19 30 27C30 33 24 38 24 38C24 38 18 33 18 27C18 19 24 12 24 12Z" fill="#F5F0E8"/></svg>
+          Dolleh
+        </a>
+        <p>The agricultural services partner carrying the operational weight so farmers across The Gambia and Senegal can focus on growing. We Support, You Grow.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#">Careers</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Tractor Hire</a>
+        <a href="#services">Agricultural Inputs</a>
+        <a href="#services">Farm Support</a>
+        <a href="#services">Advisory Services</a>
+      </div>
+      <div class="footer-col">
+        <h5>Follow</h5>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Dolleh. All rights reserved.</span>
+      <span>We Support, You Grow.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav background
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+// Animated counters
+const counters = document.querySelectorAll('.impact-stat .num');
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const duration = 1600;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target).toLocaleString();
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toLocaleString() + '+';
+      }
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+counters.forEach(c => counterIO.observe(c));
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(other => {
+      other.classList.remove('open');
+      other.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>
